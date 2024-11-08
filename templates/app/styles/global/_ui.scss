@@ -1,0 +1,29 @@
+@use 'sass:string';
+@use 'sass:map';
+@use './vars';
+
+@use '@material/theme/theme-color' with (
+  $primary: vars.$primary-color,
+  $secondary: vars.$primary-color,
+  $on-surface: vars.$text-primary-color
+);
+
+@use '@material/typography/typography' with (
+  $font-family: string.unquote('"Microsoft YaHei", Roboto, sans-serif'),
+  $styles-subtitle1: (
+    font-size: vars.$font-size-m
+  ),
+  $styles-body1: (
+    font-size: vars.$font-size-m
+  )
+);
+
+@use 'balm-ui/components/form' with (
+  $form-item-margin-bottom: vars.$spacing-s,
+  $horizontal-form-item-label-width: 100px,
+  $vertical-form-item-label-margin-bottom: vars.$spacing-s
+);
+
+@use '@material/layout-grid' as layout-grid-variables;
+
+$mobile-breakpoint: map.get(layout-grid-variables.$breakpoints, tablet) - 1px;

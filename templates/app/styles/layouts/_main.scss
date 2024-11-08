@@ -1,0 +1,11 @@
+@use '../global';
+
+body {
+  font-size: global.$font-size-m;
+  background-color: global.$theme-bgcolor;
+  color: global.$text-primary-color;
+}
+
+a {
+  color: global.$primary-color;
+}

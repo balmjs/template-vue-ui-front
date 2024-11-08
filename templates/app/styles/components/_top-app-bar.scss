@@ -1,0 +1,14 @@
+@use '../global';
+
+.mdc-top-app-bar__section {
+  align-items: flex-start;
+
+  .user-info {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  a {
+    color: global.$surface-color;
+  }
+}
