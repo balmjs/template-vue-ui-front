@@ -35,7 +35,5 @@ export function mockServer() {
 }
 
 if (process.env.NODE_ENV === 'development') {
-  Vue.prototype.$mock = true;
-
   mockServer();
 }
