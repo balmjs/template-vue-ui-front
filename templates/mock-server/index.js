@@ -2,7 +2,12 @@ import Vue from 'vue';
 import axios from 'axios';
 import useAdapter from 'miragejs-axios-adapter';
 import { createServer } from 'miragejs';
-import { NAMESPACE, PROXY_API_REGEX, MOCK_API_REGEX } from './config';
+import {
+  BALM_API_REGEX,
+  NAMESPACE,
+  PROXY_API_REGEX,
+  MOCK_API_REGEX
+} from './config';
 import createApis from './modules';
 
 export function mockServer() {
@@ -22,7 +27,9 @@ export function mockServer() {
     }
   });
 
-  server.passthrough(({ url }) => PROXY_API_REGEX.test(url));
+  server.passthrough(
+    ({ url }) => BALM_API_REGEX.test(url) || PROXY_API_REGEX.test(url)
+  );
 
   return server;
 }
