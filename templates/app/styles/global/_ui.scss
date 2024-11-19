@@ -24,6 +24,24 @@
   $vertical-form-item-label-margin-bottom: vars.$spacing-s
 );
 
-@use '@material/layout-grid' as layout-grid-variables;
+@use '@material/layout-grid' as layout-grid-variables with (
+  $breakpoints: (
+    desktop: 1200px,
+    tablet: 600px,
+    phone: 0px
+  ),
+  $default-margin: (
+    desktop: 0px,
+    tablet: 0px,
+    phone: 8px
+  ),
+  $default-gutter: (
+    desktop: 12px,
+    tablet: 8px,
+    phone: 8px
+  )
+);
 
+$desktop-layout-width: map.get(layout-grid-variables.$breakpoints, desktop);
+$tablet-breakpoint: $desktop-layout-width - 1px;
 $mobile-breakpoint: map.get(layout-grid-variables.$breakpoints, tablet) - 1px;
