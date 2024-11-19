@@ -20,49 +20,73 @@
 
     <template #drawer-title>移动端菜单</template>
     <template #drawer-content>
-      <template v-for="(menuItem, menuIndex) in $store.menu">
-        <div :key="menuIndex">
-          <ui-item class="menu-item">
-            <ui-item-text-content>
-              {{ menuItem.title }}
-            </ui-item-text-content>
-          </ui-item>
-          <ui-nav>
-            <template v-for="(submenuItem, submenuIndex) in menuItem.submenu">
-              <router-link
-                v-slot="{ navigate, href, isActive }"
-                custom
-                :to="{ name: submenuItem.name }"
-                :key="submenuIndex"
+      <div v-for="(menuItem, menuIndex) in $store.menu" :key="menuIndex">
+        <ui-item class="menu-item">
+          <ui-item-text-content>
+            {{ menuItem.title }}
+          </ui-item-text-content>
+        </ui-item>
+        <ui-nav>
+          <template v-for="(submenuItem, submenuIndex) in menuItem.submenu">
+            <router-link
+              v-slot="{ navigate, href, isActive }"
+              custom
+              :to="{ name: submenuItem.name }"
+              :key="submenuIndex"
+            >
+              <ui-nav-item
+                class="submenu-item"
+                :href="href"
+                :active="isActiveMenu(submenuItem, isActive)"
+                @click.stop="navigate"
               >
-                <ui-nav-item
-                  class="submenu-item"
-                  :href="href"
-                  :active="isActiveMenu(submenuItem, isActive)"
-                  @click.stop="navigate"
-                >
-                  <ui-item-text-content>{{
-                    submenuItem.title
-                  }}</ui-item-text-content>
-                </ui-nav-item>
-              </router-link>
-            </template>
-          </ui-nav>
-        </div>
-      </template>
+                <ui-item-text-content>{{
+                  submenuItem.title
+                }}</ui-item-text-content>
+              </ui-nav-item>
+            </router-link>
+          </template>
+        </ui-nav>
+      </div>
     </template>
 
     <div class="main-content">
       <template v-if="!useDrawer">
         <div>桌面端菜单</div>
-        <ul class="flex">
-          <li>
-            <a href="javascript:void(0)">菜单项1</a>
-          </li>
-          <li>
-            <a href="javascript:void(0)">菜单项2</a>
-          </li>
-        </ul>
+        <div class="flex">
+          <div
+            v-for="(menuItem, menuIndex) in $store.menu"
+            :key="menuIndex"
+            class="flex flex-column"
+          >
+            <ui-item class="menu-item">
+              <ui-item-text-content>
+                {{ menuItem.title }}
+              </ui-item-text-content>
+            </ui-item>
+            <ui-nav>
+              <template v-for="(submenuItem, submenuIndex) in menuItem.submenu">
+                <router-link
+                  v-slot="{ navigate, href, isActive }"
+                  custom
+                  :to="{ name: submenuItem.name }"
+                  :key="submenuIndex"
+                >
+                  <ui-nav-item
+                    class="submenu-item"
+                    :href="href"
+                    :active="isActiveMenu(submenuItem, isActive)"
+                    @click.stop="navigate"
+                  >
+                    <ui-item-text-content>{{
+                      submenuItem.title
+                    }}</ui-item-text-content>
+                  </ui-nav-item>
+                </router-link>
+              </template>
+            </ui-nav>
+          </div>
+        </div>
       </template>
 
       <router-view></router-view>

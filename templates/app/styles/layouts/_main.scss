@@ -9,3 +9,9 @@ body {
 a {
   color: global.$primary-color;
 }
+
+.main-content {
+  width: global.$desktop-layout-width;
+  max-width: 100%;
+  margin: 0 auto;
+}
