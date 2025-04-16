@@ -16,7 +16,12 @@ export function initRouter(router) {
         await $store.me();
       }
 
-      $store.isAuthenticated ? next() : next({ name: ROUTE_NAME.login });
+      $store.isAuthenticated
+        ? next()
+        : next({
+            name: ROUTE_NAME.login,
+            query: { callback: location.href } // 回跳
+          });
     } else {
       next();
     }
