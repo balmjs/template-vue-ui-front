@@ -12,7 +12,7 @@
     "deploy": "balm-git-prod"
   },
   "dependencies": {
-    "axios": "^1.7.0",
+    "axios": "^1.16.0",
     "balm-ui": "^8.72.1",
     "balm-ui-pro": "^0.69.3-legacy",
     "core-js": "^3.30.0",
