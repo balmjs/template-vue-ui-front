@@ -8,7 +8,7 @@ import {
   PROXY_API_REGEX,
   MOCK_API_REGEX
 } from './config';
-import createApis from './modules';
+import createApis from './apis';
 
 export function mockServer() {
   useAdapter(axios, MOCK_API_REGEX);
